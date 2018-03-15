@@ -3,46 +3,33 @@ var axios = require("axios");
 var db = require("../../../models")
 
 var scraperObject = {
-	getArticles: function(){
-	 // First, we grab the body of the html with axios
+	getArticles: function(callback){
+		 // First, we grab the body of the html with axios
 		axios.get("https://www.nytimes.com/section/technology?action=click&pgtype=Homepage&region=TopBar&module=HPMiniNav&contentCollection=Tech&WT.nav=page")
-		.then(function(response) {
+		.then((response)=> {
 			// Then, we load that into cheerio and save it to $ for a shorthand selector
-			var $ = cheerio.load(response.data);
-			var articleObjects = [];
+			const $ = cheerio.load(response.data);
 
-			$(".latest-panel .story-menu li").each(function(i, element) {
-			  // Save an empty result object
-				var url = $(element).find(".story-body").find(".story-link").attr("href").trim();
-				var headline = $(element).find(".story-body").find(".headline").text().trim();
-				var summary = $(element).find(".story-body").find(".summary").text().trim();
+			const newestArticles = $('.latest-panel .story-menu li').map(function(i, el) {
+
+				const url = $(el).find(".story-body").find(".story-link").attr("href");
+				const headline = $(el).find(".story-body").find(".headline").text();
+				const summary = $(el).find(".story-body").find(".summary").text();
 
 				if(url && headline && summary){
-					var article = {url: url, headline: headline, summary: summary };
-					console.log(article);
-					// Create a new Article using the `result` object built from scraping
-					// db.Article.create(article)
-					// .then(function(dbArticle) {
-					// 	// View the added result in the console
-					// 	console.log(`The article that was created was ${dbArticle}`);
-					// })
-					// .catch(function(err) {
-					// 	// If an error occurred, send it to the client
-					// 	return res.json(err);
-					// });
-					var newDiv = $("<div>");
-					//newDiv.addClass("shown");
-					// newDiv.append("<div class='card'><div class='card-body'><h3>" 
-					// 			+ headline + '</h3><p>' 
-					// 			+ summary + "</p><br><a href='" + url + "'>" 
-					// 			+ url + "</a></div></div>");
-					$("#article-area").append(newDiv);
+					url.trim();
+					headline.trim();
+					summary.trim();
+					const article = {url: url, headline: headline, summary: summary };
+					return article;
 				}
-			});
 
-			// If we were able to successfully scrape and save an Article, send a message to the client
+			}).get();
+
+			callback(newestArticles);
 			console.log("Scrape Complete");
 		});
 	}
 }
+
 module.exports = scraperObject; 

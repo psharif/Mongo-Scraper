@@ -1,0 +1,18 @@
+.new-article{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.new-article h5{
+	text-align: center;
+}
+
+.new-article p{
+	margin-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.new-article p a{
+	text-align: center;
+}
