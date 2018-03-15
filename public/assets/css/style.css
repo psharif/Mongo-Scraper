@@ -1,3 +1,11 @@
+h1, h3{
+	text-align: center;
+}
+#jumbo{
+	background-image: url(https://static.parade.com/wp-content/uploads/2017/09/newspapers-advice-ask-marilyn-ftr.jpg);
+}
+
+
 .new-article{
 	margin-top: 40px;
 	margin-bottom: 40px;
