@@ -1,6 +1,6 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
-//var db = require("../../../models");
+var db = require("../../../models");
 
 var scraperObject = {
 	getArticles: function(callback){
@@ -27,7 +27,23 @@ var scraperObject = {
 
 			}).get();
 
-			callback(newestArticles);
+			 db.Article.find({})
+		    .then(function(savedArticles) {
+		    	const nonSavedNewArticles = newestArticles.map(article =>{
+					if(!savedArticles.includes(article)){
+						return article;
+					}
+					return null;
+				});
+
+		    	callback(nonSavedNewArticles);
+
+		    })
+		    .catch(function(err) {
+		      console.log(err);
+		    });
+
+			//callback(newestArticles);
 			console.log("Scrape Complete");
 		});
 	}
