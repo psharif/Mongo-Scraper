@@ -21,7 +21,7 @@
 							<h5>
 								<a href='{{url}}' target="_blank" style="color: white;">{{headline}}</a>
 								<button type="button" class="btn btn-danger" data-id="{{_id}}" style="float: right;color: white">Delete Article</button>
-								<button type="button" class="btn btn-light " data-id="{{_id}}" style="float: right; background-color: #A898D4;color: white;margin-right: 2em">Article Notes</button>
+								<button type="button" class="btn btn-light " data-id="{{_id}}" style="float: right; background-color: #A898D4;color: white;margin-right: 2em" data-toggle="modal" data-target="#commentModal">Article Notes</button>
 							</h5>
 	  					</div>
 						<p><strong>Summary:&nbsp;</strong>{{summary}}</p>
@@ -30,5 +30,35 @@
 				</div>
 			</div>
 		{{/each}}
+	</div>
+
+
+	<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="commentModalLabel">New Comment</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form>
+	          <div class="form-group">
+	            <label for="comment-title-input" class="col-form-label">Title:</label>
+	            <input type="text" class="form-control" id="comment-title-input">
+	          </div>
+	          <div class="form-group">
+	            <label for="comment-message-input" class="col-form-label">Comment: </label>
+	            <textarea class="form-control" id="comment-message-input"></textarea>
+	          </div>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	{{!--         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">Save Comment</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 </div>

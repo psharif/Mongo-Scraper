@@ -17,7 +17,7 @@ router.post('/articles', function(req,res){
         .catch(function(err) {
           return res.json(err);
         });
-})
+});
 
 // Route for getting all Articles from the db
 router.get("/articles", function(req, res) {
@@ -29,5 +29,7 @@ router.get("/articles", function(req, res) {
       res.json(err);
     });
 });
+
+
 
 module.exports = router;
