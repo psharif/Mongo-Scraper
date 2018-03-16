@@ -1,16 +1,13 @@
 $(document).on("click", ".article-save", function(event){
 	event.preventDefault();
-	const url = $(this).data("url");
-	const headline = $(this).data("headline");
-	const summary = $(this).data("summary");
 
 	$.ajax({
 		method: "POST",
 		url: "/articles",
 		data: {
-		  url: $(this).data("url"),
+		  url: $(this).data("url").trim(),
 		  headline: $(this).data("headline").trim(),
-		  summary: $(this).data("summary")
+		  summary: $(this).data("summary").trim()
 		}
 	})
     .then(function(data) {
@@ -19,28 +16,22 @@ $(document).on("click", ".article-save", function(event){
 });
 
 
-// $(document).on("click", ".delete-article", function(event){
-// 	event.preventDefault();
-// 	const url = $(this).data("url");
-// 	const headline = $(this).data("headline");
-// 	const summary = $(this).data("summary");
+$(document).on("click", ".delete-article", function(event){
+	event.preventDefault();
+	const articleId = $(this).data("id");
 
-// 	$.ajax({
-// 		method: "POST",
-// 		url: "/articles",
-// 		data: {
-// 		  url: $(this).data("url"),
-// 		  headline: $(this).data("headline").trim(),
-// 		  summary: $(this).data("summary")
-// 		}
-// 	})
-//     .then(function(data) {
-//       console.log(data);
-//     });
-// });
+	$.ajax({
+		method: "DELETE",
+		url: "/articles/" + articleId
+	})
+    .then(function(data) {
+      console.log(data);
+      location.reload();
+    });
+});
 
 
-$(document).on("click", ".make-note", function(event){
+$(document).on("click", ".make-comment", function(event){
 	event.preventDefault();
 	const articleId = $(this).data("id");
 
@@ -58,21 +49,33 @@ $(document).on("click", ".make-note", function(event){
 $("#save-comment").on("click", function(event){
 	event.preventDefault();
 	const articleId = $(this).data("id");
-	const commentTitle = $('#comment-title-input').val().trim();
-	const commentBody = $('#comment-message-input').val().trim();
 
 	$.ajax({
 		method: "POST",
 		url: "/articles/" + articleId,
 		data: {
-		  title: commentTitle,  
-		  body: commentBody
+		  title: $('#comment-title-input').val().trim(),  
+		  body: $('#comment-message-input').val().trim()
 		}
 	})
     .then(function(data) {
       console.log(data);
-      // $('#comment-title-input').val("");
-      // $('#comment-message-input').val("")
       location.reload();
     });
 });
+
+
+$(document).on("click", ".delete-comment", function(event){
+	event.preventDefault();
+	const commentId = $(this).data("id");
+
+	$.ajax({
+		method: "DELETE",
+		url: "/comments/" + commentId
+	})
+    .then(function(data) {
+      console.log(data);
+      location.reload();
+    });
+});
+

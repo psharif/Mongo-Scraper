@@ -8,6 +8,7 @@ router.get('/', function(req, res){
 	});
 });
 
+///Article Routes 
 router.post('/articles', function(req,res){
       db.Article.create(req.body)
         .then(function(dbArticle) {
@@ -31,6 +32,17 @@ router.get("/articles", function(req, res) {
     });
 });
 
+router.delete("/articles/:id", function(req,res){
+  db.Article.deleteOne({_id: req.params.id })
+  .then(function(dbArticle){
+    res.json(dbArticle);
+  })
+  .catch(function(err) {
+    res.json(err);
+  });
+});
+
+///Message Routes
 router.post("/articles/:id", function(req, res){
   db.Comment.create(req.body)
     .then(function(dbComment) {
@@ -48,7 +60,7 @@ router.post("/articles/:id", function(req, res){
 });
 
 router.get("/articles/:id", function(req, res){
-  db.Article.findOne({ _id: req.params.id })
+  db.Article.findOne({ d})
     .populate("comments")
     .then(function(dbArticle) {
       res.json(dbArticle);
@@ -56,6 +68,16 @@ router.get("/articles/:id", function(req, res){
     .catch(function(err) {
       res.json(err);
     });
+});
+
+router.delete("/comments/:id", function(req,res){
+  db.Comment.deleteOne({_id: req.params.id })
+  .then(function(dbComment){
+    res.json(dbComment);
+  })
+  .catch(function(err) {
+    res.json(err);
+  });
 });
 
 module.exports = router;
