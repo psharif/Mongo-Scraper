@@ -1,5 +1,5 @@
-var cheerio = require("cheerio");
-var axios = require("axios");
+const cheerio = require("cheerio");
+const axios = require("axios");
 //var db = require("../../../models");
 
 var scraperObject = {
@@ -17,10 +17,11 @@ var scraperObject = {
 				const summary = $(el).find(".story-body").find(".summary").text();
 
 				if(url && headline && summary){
-					url.trim();
-					headline.trim();
-					summary.trim();
-					const article = {url: url, headline: headline, summary: summary };
+					const trimmedUrl = url.trim();
+					const trimmedHeadline = headline.trim();
+					const trimmedSummary = summary.trim();
+
+					const article = {url: trimmedUrl, headline: trimmedHeadline, summary: trimmedSummary };
 					return article;
 				}
 

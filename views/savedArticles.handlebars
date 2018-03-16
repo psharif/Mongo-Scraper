@@ -6,22 +6,21 @@
 	  	</form>
 	</nav>
 	<div class="jumbotron" id="jumbo">
-	  <h1 style="color:#4274D4">Mongo Scraper</h1> 
+	  <h1 style="color:#4274D4">Saved Articles</h1> 
 	  <br><br>
-	  <h3 style="color:#4274D4"> Scraping New Articles Everyday</h3> 
+	  <h3 style="color:#4274D4"> Feel Free to Comment or Delete</h3> 
 	  <br><br>
-	  <button type="button" class="btn btn-primary btn-lg btn-block">Scrape Data</button>
 	</div>
 	<br><br>
 	<div id="article-area">
-		{{#each article}}
+		{{#each savedArticle}}
 			<div class="new-article">
 				<div class='card'>
 					<div class='card-body'>
 						<div class="card-header" style="background-color: #4274D4; padding: 2em;">
 							<h5>
 								<a href='{{url}}' target="_blank" style="color: white;">{{headline}}</a>
-								<button type="button" class="btn btn-success article-save" id="save-button" data-url="{{url}}" data-headline="{{headline}}" data-summary="{{summary}}" style="float: right">Save</button>
+								{{!-- <button type="button" class="btn btn-success article-save" id="save-button" data-url="{{url}}" data-headline="{{headline}}" data-summary="{{summary}}" style="float: right">Save</button> --}}
 							</h5>
 	  					</div>
 						<p><strong>Summary:&nbsp;</strong>{{summary}}</p>

@@ -14,7 +14,8 @@ var cheerio = require("cheerio");
 //var db = require("./models");
 var port = process.env.PORT || 3000;
 //Mongo Environment for app
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+//var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraperDB";
+var MONGODB_URI = "mongodb://localhost/scraperDB";
 
 // Initialize Express
 var app = express();
@@ -34,7 +35,7 @@ app.set("view engine", "handlebars");
 // By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/");
+mongoose.connect(MONGODB_URI);
 
 // Routes
 // =============================================================
