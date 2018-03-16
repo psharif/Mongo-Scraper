@@ -10,12 +10,10 @@ var exphbs = require("express-handlebars");
 var axios = require("axios");
 var cheerio = require("cheerio");
 
-// Require all models
-//var db = require("./models");
+//Ports
 var port = process.env.PORT || 3000;
 //Mongo Environment for app
-//var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraperDB";
-var MONGODB_URI = "mongodb://localhost/scraperDB";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraperDB";
 
 // Initialize Express
 var app = express();

@@ -20,7 +20,7 @@ var ArticleSchema = new Schema({
   },
   comments: [{
     type: Schema.Types.ObjectId,
-    ref: "Note"
+    ref: "Comment"
   }]
 });
 

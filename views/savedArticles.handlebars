@@ -20,8 +20,8 @@
 						<div class="card-header" style="background-color: #4274D4; padding: 2em;">
 							<h5>
 								<a href='{{url}}' target="_blank" style="color: white;">{{headline}}</a>
-								<button type="button" class="btn btn-danger" data-id="{{_id}}" style="float: right;color: white">Delete Article</button>
-								<button type="button" class="btn btn-light " data-id="{{_id}}" style="float: right; background-color: #A898D4;color: white;margin-right: 2em" data-toggle="modal" data-target="#commentModal">Article Notes</button>
+								<button type="button" class="btn btn-danger delete-article" data-id="{{_id}}" style="float: right;color: white">Delete Article</button>
+								<button type="button" class="btn btn-light make-note" data-id="{{_id}}" style="float: right; background-color: #A898D4;color: white;margin-right: 2em" data-toggle="modal" data-target="#commentModal">Article Notes</button>
 							</h5>
 	  					</div>
 						<p><strong>Summary:&nbsp;</strong>{{summary}}</p>
@@ -29,7 +29,18 @@
 					</div>
 				</div>
 			</div>
+			<h4 style="text-align:center">Comments</h4>
+			{{#each comments}}
+			<div class='card' style="width: 60%; margin: auto">
+				<div class='card-body'>
+				<h6 style="margin-left:10px;padding: 10px;"><strong><span style="padding-top:20px">{{title}}</span></strong><button type="button" class="btn btn-danger delete-comment" data-id="{{_id}}" style="float:right;color: white;">x</button></h6>
+				<hr>
+				<p style="margin-left:20px"> {{body}}</p>
+				</div>
+			</div>
+			{{/each}}
 		{{/each}}
+		<br><br><br>
 	</div>
 
 
@@ -37,7 +48,7 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="commentModalLabel">New Comment</h5>
+	        <h6 class="modal-title" id="commentModalLabel">New Comment</h6>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -54,9 +65,9 @@
 	          </div>
 	        </form>
 	      </div>
+	      <div id="comment-article-id"></div>
 	      <div class="modal-footer">
-	{{!--         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-	        <button type="button" class="btn btn-primary" data-dismiss="modal">Save Comment</button>
+	        <button type="button" class="btn btn-primary" data-dismiss="modal" id="save-comment">Save Comment</button>
 	      </div>
 	    </div>
 	  </div>
