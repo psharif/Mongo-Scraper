@@ -5,8 +5,7 @@ var db = require("../models");
 router.post('/', function(req,res){
   db.Article.create(req.body)
   .then(function(dbArticle) {
-    res.json(res.json);
-
+    res.json(dbArticle);
   })
   .catch(function(err) {
     return res.json(err);

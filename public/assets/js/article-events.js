@@ -11,8 +11,8 @@ $(document).on("click", ".article-save", function(event){
 		}
 	})
     .then(function(data) {
-      console.log(data);
-      location.reload();
+    	console.log(data);
+		location.reload();
     });
 });
 
