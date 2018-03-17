@@ -13,14 +13,14 @@
   __'axios'__ was used to make server side api requests. __'express-handlebars'__ was used for view templating. 
 * The Defualt Port written in the app is 3000. Connect using localhost: 3000, or change configuration on server.js. But the deployed app uses Heroku's environment Port on Heroku deployed version.
 
-## Clicking On Save will save
+## Clicking On Save on an Article
 
 ![buger devour gif](/README_GIFS/SavedArticle.gif)
 
 This will save an article (want to make it so it doesn't show in scraped articles page. Will work on fixing.)
 Go to __Saved Articles__ To see the articles saved to the database. You can also delete them if you would like. 
 
-## Creating or editin comments. 
+## Creating or editing comments. 
 
 ![burger create gif](/README_GIFS/comment.gif)
 
