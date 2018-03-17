@@ -11,12 +11,11 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 //Ports
-//var port = process.env.PORT || 3000;
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 //Mongo Environment for app
-//var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraperDB";
-var MONGODB_URI = "mongodb://localhost/scraperDB";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraperDB";
+
 
 // Initialize Express
 var app = express();
