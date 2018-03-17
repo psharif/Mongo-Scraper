@@ -59,15 +59,14 @@ router.post("/articles/:id", function(req, res){
     });
 });
 
-router.get("/articles/:id", function(req, res){
-  db.Article.findOne({ d})
-    .populate("comments")
-    .then(function(dbArticle) {
-      res.json(dbArticle);
-    })
-    .catch(function(err) {
-      res.json(err);
-    });
+router.put("/comments/:id", function(req,res){
+  db.Comment.findOneAndUpdate({_id: req.params.id }, req.body)
+  .then(function(dbComment){
+    res.json(dbComment);
+  })
+  .catch(function(err) {
+    res.json(err);
+  });
 });
 
 router.delete("/comments/:id", function(req,res){
