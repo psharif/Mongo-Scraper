@@ -29,14 +29,28 @@ var scraperObject = {
 
 			 db.Article.find({})
 		    .then(function(savedArticles) {
-		    	const nonSavedNewArticles = newestArticles.map(article =>{
-					if(!savedArticles.includes(article)){
-						return article;
+		    	const nonSavedNewArticles = newestArticles.map(nonSavedArticle =>{
+					return savedArticles.map(savedArticle =>{
+						if (savedArticle.headline.trim() == nonSavedArticle.headline.trim()){
+							return null;
+						}else{
+							return nonSavedArticle;
+						}
+					});
+				});	
+
+				const returnedArray = nonSavedNewArticles.map(nonSavedNewArticle =>{
+					if(nonSavedNewArticle.includes(null)){
+						return null;
+					}else{
+						return nonSavedNewArticle[0];
 					}
-					return null;
+
 				});
 
-		    	callback(nonSavedNewArticles);
+				const filteredArray = returnedArray.filter(article => article !== null);
+
+		    	callback(filteredArray);
 
 		    })
 		    .catch(function(err) {
